@@ -1,4 +1,6 @@
-import seaborn
+from airflow.providers.snowflake.hooks.snowflake import SnowflakeHook
+from snowflake.snowpark import Session
 
-print("hello")
-print(seaborn.__version__)
+print("Hello")
+print(SnowflakeHook.__module__)
+print(Session.__module__)
