@@ -9,10 +9,10 @@ import os
     schedule=None,
     catchup=False,
 )
-def py_virtual_env():
+def seaborn_venv_works():
     test1 = BashOperator(
         task_id="test1",
-        bash_command="echo $ASTRO_PYENV_my_venv && pwd",
+        bash_command="echo $ASTRO_PYENV_my_seaborn_venv && pwd",
     )
 
     test2 = BashOperator(
@@ -22,31 +22,29 @@ def py_virtual_env():
 
     test3 = BashOperator(
         task_id="test3",
-        bash_command="cd /home/astro/.venv/my_venv/bin/ && ls -la",
+        bash_command="cd /home/astro/.venv/my_seaborn_venv/bin/ && ls -la",
     )
 
     test4 = BashOperator(
         task_id="test4",
-        bash_command="/home/astro/.venv/my_venv/bin/python include/test.py",
+        bash_command="/home/astro/.venv/my_seaborn_venv/bin/python include/test_seaborn.py",
         cwd="/usr/local/airflow",
     )
 
     @task.external_python(
         task_id="external_python",
-        python=os.environ["ASTRO_PYENV_my_venv"],
+        python=os.environ["ASTRO_PYENV_my_seaborn_venv"],
         expect_airflow=False,
     )
     def callable_external_python():
-        from airflow.providers.snowflake.hooks.snowflake import SnowflakeHook
-        from snowflake.snowpark import Session
+        import seaborn
 
         print("Hello")
-        print(SnowflakeHook.__module__)
-        print(Session.__module__)
+        print(seaborn.__version__)
 
     task_external_python = callable_external_python()
 
-    test1 >> test2 >> test3 >> test4 >> task_external_python
+    test1 >> test2 >> test3 >> [test4, task_external_python]
 
 
-py_virtual_env()
+seaborn_venv_works()
