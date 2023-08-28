@@ -1,3 +1,4 @@
 snowflake-snowpark-python[pandas]
 apache-airflow-providers-snowflake
 psycopg2-binary
+kubernetes
