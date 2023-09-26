@@ -81,7 +81,6 @@ default_args={
     start_date=pendulum.from_format("2023-09-26", "YYYY-MM-DD").in_tz("UTC"),
     catchup=False,
     owner_links={
-        "tamara.fingerlin@astronomer.io": "mailto:tamara.fingerlin@astronomer.io",
         "Open in Cloud IDE": "https://cloud.astronomer.io/clmamxzds00md01mw0027nnz4/cloud-ide/cln0pl916004m01mj5lqm3d2u/cln0pq3rv004t01lkb3ny98tw",
     },
 )
