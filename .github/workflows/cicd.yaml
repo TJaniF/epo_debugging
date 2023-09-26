@@ -15,4 +15,5 @@ jobs:
     steps:
     - name: Deploy to Astro
       uses: astronomer/deploy-action@v0.2
-      deployment-id: clmhksovg16276801uvllwoio2u3
+      with:
+        deployment-id: clmhksovg16276801uvllwoio2u3
