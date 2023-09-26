@@ -13,7 +13,7 @@ import pendulum
 @aql.run_raw_sql(conn_id="snowflake_conn", task_id="query_table", results_format="pandas_dataframe")
 def query_table_func():
     return """
-    SELECT * FROM <your database>.<your_schema>.DOG_INTELLIGENCE 
+    SELECT * FROM SANDBOX.TAMARAFINGERLIN.DOG_INTELLIGENCE 
     WHERE CONCAT(BREED, HEIGHT_LOW_INCHES, HEIGHT_HIGH_INCHES, WEIGHT_LOW_LBS, 
     WEIGHT_HIGH_LBS, REPS_UPPER, REPS_LOWER) IS NOT NULL
     
@@ -72,7 +72,7 @@ def model_task_func(transform_table: pd.DataFrame):
     """ 
 
 default_args={
-    "owner": "tamara.fingerlin@astronomer.io,Open in Cloud IDE",
+    "owner": "Open in Cloud IDE",
 }
 
 @dag(
